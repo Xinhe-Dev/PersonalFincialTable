@@ -1,0 +1,238 @@
+/* 定义CSS变量，方便管理主题色 */
+:root {
+    --primary-color: #4CAF50; /* 主色调，绿色 */
+    --secondary-color: #ffffff; /* 次要色调，白色 */
+    --background-color: #f4f4f4; /* 背景色，浅灰 */
+    --text-color: #333333; /* 文字颜色，深灰 */
+    --accent-color: #FF5722; /* 强调色，橙色 */
+    --border-radius: 8px; /* 圆角 */
+    --transition-duration: 0.3s; /* 动画时长 */
+}
+
+/* 深色模式变量 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #81C784;
+        --secondary-color: #333333;
+        --background-color: #121212;
+        --text-color: #f0f0f0;
+        --accent-color: #FF7043;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+/* 容器布局 */
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 80vh;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+    width: 300px;
+    background-color: var(--primary-color);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar h1 {
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+    font-size: 1.8em;
+}
+
+.sidebar label {
+    color: var(--secondary-color);
+    font-weight: bold;
+    align-self: flex-start;
+    margin-bottom: 5px;
+}
+
+.sidebar input,
+.sidebar select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: var(--border-radius);
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+    font-size: 1em;
+}
+
+.sidebar input::placeholder {
+    color: #888;
+}
+
+.sidebar button {
+    width: 100%;
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    padding: 12px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1em;
+    transition: background var(--transition-duration);
+    margin-top: auto;
+}
+
+.sidebar button:hover {
+    background-color: darken(var(--accent-color), 10%);
+}
+
+/* 主内容样式 */
+.main-content {
+    flex: 1;
+    padding: 30px 40px;
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.main-content label {
+    color: var(--text-color);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.main-content input[type="date"] {
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    width: 200px;
+}
+
+.main-content button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1em;
+    transition: background var(--transition-duration);
+    align-self: flex-start;
+    margin-bottom: 30px;
+}
+
+.main-content button:hover {
+    background-color: darken(var(--primary-color), 10%);
+}
+
+/* 表格样式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+th,
+td {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center;
+    font-size: 1em;
+}
+
+th {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* 概要信息样式 */
+#summary {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+#summary p {
+    margin: 0;
+    color: var(--text-color);
+}
+
+#summary span {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* 删除按钮样式 */
+td button {
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    padding: 8px 12px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background var(--transition-duration);
+}
+
+td button:hover {
+    background-color: darken(var(--accent-color), 10%);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+    }
+
+    .main-content {
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+        padding: 20px;
+    }
+
+    #summary {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #summary p {
+        margin-bottom: 10px;
+    }
+}

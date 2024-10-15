@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Financial Management Tools</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 左边侧边栏 -->
+        <aside class="sidebar">
+            <h1>Add Income/Expenses</h1>
+            <form id="transactionForm" action="save_transaction.php" method="POST">
+                <label for="type">Type:</label>
+                <select name="type" id="type">
+                    <option value="income">Income</option>
+                    <option value="expense">Expenses</option>
+                </select><br><br>
+
+                <label for="category">Category:</label>
+                <select name="category" id="category"></select><br><br>
+
+                <label for="amount">Amount:</label>
+                <input type="number" name="amount" id="amount" step="0.01" required><br><br>
+
+                <label for="description">Description (Max 20 words):</label>
+                <input type="text" name="description" id="description" maxlength="20"><br><br>
+
+                <label for="transaction-date">Date:</label>
+                <input type="date" name="date" id="transaction-date" required><br><br>
+
+                <button type="submit">Submit</button>
+            </form>
+        </aside>
+
+        <!-- 右边主内容 -->
+        <section class="main-content">
+            <h2>Select a date to view your income and expenditure</h2>
+            <label for="view-date">Select Date:</label>
+            <input type="date" id="view-date" name="view-date"><br><br>
+
+            <button onclick="updateData()">Update Table</button>
+
+            <h2>Today's income and expenditure records</h2>
+            <div id="daily-transactions">
+                <table border="1" cellpadding="10" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Category</th>
+                            <th>Amount($)</th>
+                            <th>Description</th>
+                            <th>Operation</th> 
+                        </tr>
+                    </thead>
+                    <tbody id="transaction-data">
+
+                    </tbody>
+                </table>
+
+                <div id="summary">
+                    <p>Total Income: <span id="total-income">$0.00</span></p>
+                    <p>Total Expenses: <span id="total-expense">$0.00</span></p>
+                    <p>Balance: <span id="balance">$0.00</span></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
